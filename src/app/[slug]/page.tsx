@@ -1,17 +1,19 @@
-import PageContent from "@/modules/pages/PageContent";
-import { getPages } from "@/server/requests";
 import {
   HydrationBoundary,
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import PageContent from "@/modules/pages/PageContent";
+import { getPages } from "@/server/requests";
 
 export default async function MainPage({
   params: { slug },
 }: {
   params: { slug: string };
 }) {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { suspense: true } },
+  });
   await queryClient.prefetchQuery({
     queryKey: ["pages", slug],
     queryFn: () => getPages({ slug }),
