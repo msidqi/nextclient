@@ -1,3 +1,4 @@
+import axios from "axios";
 import { PagesResponseData } from "@/types";
 
 const headers = {
@@ -11,10 +12,9 @@ export async function GET(
 ) {
   const url = `https://dev-fbx-api.lnc-live.com/api/pages?filters[slug]=${params.slug}`;
   try {
-    const res = await fetch(url, { headers });
-    const pages: PagesResponseData = await res.json();
+    const response = await axios.get<PagesResponseData>(url, { headers });
 
-    return Response.json(pages);
+    return Response.json(response.data);
   } catch (error) {
     return new Response(JSON.stringify({ error: "Something went wrong!" }), {
       status: 500,

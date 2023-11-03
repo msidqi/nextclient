@@ -1,11 +1,15 @@
 "use client";
 
+import { notFound } from "next/navigation";
+
 const ErrorPage = ({
   error,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
+  // redirect to 404
+  if (error.message === "NEXT_NOT_FOUND") return notFound();
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-24">
       <div className="bg-white p-6 rounded-lg shadow-md">

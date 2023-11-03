@@ -3,25 +3,19 @@ import {
   PagesResponseData,
   RequestParameters,
 } from "@/types";
+import { API } from "./api";
 
 export const getPages = async ({
   slug,
 }: {
   slug?: string;
 }): Promise<PagesResponseData> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL_BASE}/api/pages/${slug}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  if (!response.ok) {
-    throw new Error(`Request failed with status: ${response.status}`);
-  }
-
-  return response.json();
+  const response = await API.get<PagesResponseData>(`/pages/${slug}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.data;
 };
 
 export const getComponent = async ({
@@ -31,20 +25,14 @@ export const getComponent = async ({
   id?: number;
   parameters: RequestParameters;
 }): Promise<GetComponentResponseData> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL_BASE}/api/requests/execute/${id}`,
+  const response = await API.post<GetComponentResponseData>(
+    `/requests/execute/${id}`,
+    parameters,
     {
-      method: "POST",
-      body: JSON.stringify(parameters),
       headers: {
         "Content-Type": "application/json",
       },
     }
   );
-
-  if (!response.ok) {
-    throw new Error(`Request failed with status: ${response.status}`);
-  }
-
-  return response.json();
+  return response.data;
 };

@@ -12,7 +12,7 @@ export default function Home() {
   };
 
   const onEnterKey = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.code === "Enter") redirectToSlug();
+    if (e.key === "Enter") redirectToSlug();
   };
 
   return (
