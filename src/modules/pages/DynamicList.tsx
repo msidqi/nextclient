@@ -21,7 +21,7 @@ const DynamicList = ({ title, request, columns }: DynamicListProps) => {
   return (
     <Suspense fallback="Loading table data...">
       <div>
-        <h3 className="font-bold mb-6">{title}</h3>
+        <h3 className="text-center font-bold mb-6">{title}</h3>
         {data?.data && <Table columns={columns} data={data.data} />}
       </div>
     </Suspense>

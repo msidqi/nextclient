@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-query";
 import PageContent from "@/modules/pages/PageContent";
 import { getPages } from "@/server/requests";
+import Link from "next/link";
 
 export default async function MainPage({
   params: { slug },
@@ -20,7 +21,12 @@ export default async function MainPage({
   });
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
+      <div className="max-w-5xl w-full items-center justify-between font-mono text-sm">
+        <div className="mb-4">
+          <Link className="font-bold" href="/">
+            {"< Home"}
+          </Link>
+        </div>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <PageContent slug={slug} />
         </HydrationBoundary>
