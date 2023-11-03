@@ -20,7 +20,13 @@ const Table = ({ columns, data }: TableProps) => {
     columns: columns.map((col) =>
       columnHelper.accessor(col.field as any, {
         header: col.name,
-        cell: (info) => info.renderValue(),
+        cell: (info) => {
+          if (col.field === "endTime" || col.field === "startTime") {
+            const value = info.getValue();
+            return value ? new Date(value).toLocaleString() : "";
+          }
+          return info.renderValue();
+        },
       })
     ),
     getCoreRowModel: getCoreRowModel(),

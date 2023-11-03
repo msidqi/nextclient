@@ -17,16 +17,19 @@ const PageContent = ({ slug }: { slug?: string }) => {
   const title = data?.data?.[0].attributes.heading || "Page";
 
   return (
-    <section>
-      <Suspense fallback="Loading...">
-        {data?.data?.[0].attributes.contentSections.map((contentSection) => (
-          <SectionRenderer
-            key={contentSection.id}
-            contentSection={contentSection}
-          />
-        ))}
-      </Suspense>
-    </section>
+    <>
+      <title>{title}</title>
+      <section>
+        <Suspense fallback="Loading...">
+          {data?.data?.[0].attributes.contentSections.map((contentSection) => (
+            <SectionRenderer
+              key={contentSection.id}
+              contentSection={contentSection}
+            />
+          ))}
+        </Suspense>
+      </section>
+    </>
   );
 };
 
