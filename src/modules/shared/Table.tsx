@@ -23,7 +23,7 @@ const Table = ({ columns, data }: TableProps) => {
         cell: (info) => {
           if (col.field === "endTime" || col.field === "startTime") {
             const value = info.getValue();
-            return value ? new Date(value).toLocaleString() : "";
+            return value ? new Date(value).toUTCString() : "";
           }
           return info.renderValue();
         },
