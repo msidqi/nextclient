@@ -17,20 +17,16 @@ const PageContent = ({ slug }: { slug?: string }) => {
   const title = data?.data?.[0].attributes.heading || "Page";
 
   return (
-    <>
-      <title>{title}</title>
-      <section>
-        <h1 className="mb-6">slug: {slug}</h1>
-        <Suspense fallback="Loading...">
-          {data?.data?.[0].attributes.contentSections.map((contentSection) => (
-            <SectionRenderer
-              key={contentSection.id}
-              contentSection={contentSection}
-            />
-          ))}
-        </Suspense>
-      </section>
-    </>
+    <section>
+      <Suspense fallback="Loading...">
+        {data?.data?.[0].attributes.contentSections.map((contentSection) => (
+          <SectionRenderer
+            key={contentSection.id}
+            contentSection={contentSection}
+          />
+        ))}
+      </Suspense>
+    </section>
   );
 };
 
