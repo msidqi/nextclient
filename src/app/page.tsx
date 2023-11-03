@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { KeyboardEvent, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -11,6 +11,10 @@ export default function Home() {
     }
   };
 
+  const onEnterKey = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === "Enter") redirectToSlug();
+  };
+
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-between p-24">
       <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
@@ -18,6 +22,7 @@ export default function Home() {
           ref={inputRef}
           className="border-2 border-black p-2 rounded mr-4"
           placeholder="Enter a slug"
+          onKeyUp={onEnterKey}
         />
         <button
           onClick={redirectToSlug}
