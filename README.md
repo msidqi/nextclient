@@ -1,15 +1,19 @@
 ## Getting Started
 
-First, run the development server:
+1 - Create a .env file at root of the project and add following values to it
+API_TOKEN=
+NEXT_PUBLIC_API_URL_BASE=http://localhost:3000
+
+2 - Add your API_TOKEN to the .env file
+
+3 - Start project
 
 ```bash
-npm run dev
+npm run build build && npm run start
 # or
-yarn dev
+yarn build && yarn start
 # or
-pnpm dev
-# or
-bun dev
+pnpm build && pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
